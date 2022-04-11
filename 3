@@ -1,0 +1,39 @@
+#include "Header.h"
+void push(elem*& stack, char value)
+{
+	elem* newel = new elem;
+	newel->value = value;
+	if (!stack)
+	{
+		stack = newel;
+	}
+	else
+	{
+		newel->next = stack;
+		stack = newel;
+	}
+}
+char* peek(elem* stack)
+{
+	if (!stack) return nullptr;
+	return &stack->value;
+}
+
+bool pop(elem*& stack, char& value)
+{
+	if (!stack) return false; 
+	elem* rem = stack;
+	value = stack->value;
+	stack = stack->next;
+	delete rem;
+	return true;
+  }
+void clear(elem*& stack)
+{
+	while (stack)
+	{
+		elem* rem = stack;
+		stack = stack->next;
+		delete rem;
+	}
+}
